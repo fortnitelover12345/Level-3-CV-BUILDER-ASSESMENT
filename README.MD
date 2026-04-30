@@ -1,0 +1,1 @@
+Set-ExecutionPolicy Unrestricted -Scope Process ;  .venv/Scripts/activate ; django-admin startproject launchpad ;  cd launchpad ;  py manage .py runserver
