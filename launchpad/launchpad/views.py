@@ -1,7 +1,5 @@
 from django.http import HttpResponse 
-
-def mainpage(request):
-    return HttpResponse("Welcome to the mainpage!")
-
-def template(request):
-    return HttpResponse("This is the template page.")
+from django.shortcuts import render 
+def index(request):
+ #   return HttpResponse("Welcome to the mainpage!")
+    return render(request, 'index.html')

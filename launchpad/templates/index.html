@@ -1,13 +1,21 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1> Home <h1>
-        <p> CHeck out my  <a href="/about">About</a> page.</p>
+    <nav> 
+        <ul>
+            <li><a href="/">Home</a></li>	
+            <li><a href="cv/templates">Templates</a></li>
+        </ul>
+    </nav>
+
+
     
 </body>
 </html>
