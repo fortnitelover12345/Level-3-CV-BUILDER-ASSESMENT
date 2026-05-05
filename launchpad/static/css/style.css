@@ -9,10 +9,43 @@ body {
     display: grid; 
     place-content: center; 
     font-size: 3rem; 
-    background-color: black; 
+    background-color: #F8FEFF; 
     color: whitesmoke; 
 }
 
 h1, p {
     text-align: center;
+}
+
+nav {
+    display: flex; 
+    gap: 1rem; 
+    justify-content: center; 
+    margin-top: 2rem;
+}
+main {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 1rem;
+}
+main { 
+    background-color: #008859; 
+    padding: 2rem; 
+    border-radius: 1rem; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+h1 { 
+    color: whitesmoke; 
+}	
+nav a { 
+    text-decoration: none; 
+    color: whitesmoke; 
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem; 
+    background-color: #00A86B; 
+    transition: background-color 0.3s ease; 
+}
+nav a:hover { 
+    background-color: #00C78C; 
 }

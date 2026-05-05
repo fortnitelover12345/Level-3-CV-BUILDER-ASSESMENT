@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <nav> 
-        <ul>
-            <li><a href="/">Home</a></li>	
-            <li><a href="cv/templates">Templates</a></li>
-        </ul>
-    </nav>
-
-
-    
-</body>
-</html>
+{% extends 'layout.html' %}
+  
+  {% block title %} Home {% endblock %}
+  
+  {% block content %}
+      <h1> Welcome to Launchpad! </h1>
+      <p> This is website is for making CVs. </p>
+  {% endblock %}
