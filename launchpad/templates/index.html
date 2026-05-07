@@ -1,8 +1,35 @@
 {% extends 'layout.html' %}
   
   {% block title %} Home {% endblock %}
-  
+
+  {% block cvbutton%} <button class="cv-btn">CV</button> {% endblock %}
+
   {% block content %}
-      <h1> Welcome to Launchpad! </h1>
-      <p> This is website is for making CVs. </p>
+  <div class="hero">
+    <div class="main-box">
+        Welcome to Launchpad CV Builder! 
+       <div class="subheading">Your one-stop solution for creating stunning CVs effortlessly.</div> 
+    </div>
+
+
+    <div class="icons">
+        <div class="circle">+</div>
+        <div class="circle">⤴</div>
+    </div>
+</div>
+
+<div class="templates-section">
+  <div class="templates-btn">
+      <a href="{% url 'templates' %}">Templates</a>
+  </div>
+
+  <div class="template-grid">
+      <div class="template-card"></div>
+      <div class="template-card"></div>
+      <div class="template-card"></div>
+      <div class="template-card"></div>
+      <div class="template-card"></div>
+  </div>
+</div>
+</div>
   {% endblock %}

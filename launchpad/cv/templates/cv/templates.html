@@ -1,15 +1,12 @@
-<!DOCTYPE html>
+{% extends 'layout.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Template page </title>
-    <script src="{% static 'js/main.js' %}" defer></script>
-</head>
-<body>
-    <h1> Templates <h1>
-        <p> Check out my  <a href="/">Home</a> page.</p>
-    
-</body>
-</html>
+{% block title%} CV Templates {% endblock %}
+{% block content%}
+    <h1>Choose Your CV Template</h1>
+    <div class="templatepage-selection">
+    <div class="template-previews">
+        <div class="cv-template-button">
+            
+        <div class="template-preview">
+            
+{% endblock%}
