@@ -27,4 +27,4 @@ cd clarity ;
 py manage.py runserver 6464
 ```
 Now everything should be complete and you can go to the following link: 
-[Local Host](https://localhost:6464)
+[Local Host](http://127.0.0.1:8000/)

@@ -38,6 +38,8 @@ body {
     padding: 10px 15px;
     margin-left: 10px;
     cursor: pointer;
+    flex-shrink: 0; 
+    border-radius: 8px; 
 }
 
 /* HERO SECTION */
@@ -54,6 +56,8 @@ body {
     width: 300px;
     margin: 0 auto;
     font-size: 20px;
+    flex-shrink: 0; 
+    border-radius: 8px; 
 }
 
 .icons {
@@ -103,7 +107,7 @@ body {
 
 .template-card {
     width: 150px; 
-    height: 200px;
+    height: 300px;
     background: #ecf0f1;
     border: 2px solid #0f8a5f; 
     border-radius: 8px; 
@@ -116,6 +120,113 @@ body {
 
 /* TEMPLATE PAGE */
 .templatepage-selection {
-    background : #98CB8D;
+    background: #98CB8D;
+    min-height: 100vh; 
+    width: 100%; 
+    margin: 0;
+    padding: 20px; 
+    box-sizing: border-box;
+}
+.templatepage-selection h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    background: #0f8a5f;
+    padding: 40px;
+    width: 400px;
+    margin: 0 auto;
+    font-size: 20px;
+    flex-shrink: 0; 
+    border-radius: 8px; 
+}
+.template-preview {
+    display: flex;
+    gap: 20px; 
+    justify-content: center; 
+}
 
+/* Filter Dropdowns Container */
+.filter-dropdowns {
+    display: flex;
+    gap: 20px;
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+/* Individual Dropdown */
+.filter-dropdown {
+    width: 200px;
+    padding: 10px; 
+    border: 2px solid #0f8a5f; 
+    border-radius: 8px; 
+    background: #ecf0f1; 
+    color: #333; 
+    font-size: 16px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+/* Dropdown Hover Effect */
+.filter-dropdown:hover {
+    border-color: #0a6e47; 
+}
+
+/* Dropdown Focus Effect */
+.filter-dropdown:focus {
+    outline: none; 
+    border-color: #0a6e47;
+    box-shadow: 0 0 5px rgba(10, 110, 71, 0.5);
+}
+/* Template Grid */
+.template-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+/* Template Card */
+.template-card {
+    width: 250px; 
+    background: #ffffff;
+    border: 2px solid #0f8a5f;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Template Preview Image */
+.template-preview-img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Template Title */
+.template-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Use Template Button */
+.use-template-btn {
+    background: #0f8a5f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.use-template-btn:hover {
+    background: #0a6e47;
 }
