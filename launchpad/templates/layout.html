@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <link rel="icon" type="launchpad\static\images\Screenshot 2026-04-02 141234.png" href="/favicon.png">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,18 +10,16 @@
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/main.js' %}" defer></script>
-    <link rel="icon" href="G:\My Drive\L3DTSD\Level 3 CV BUILDER ASSESMENT\launchpad\static\images\Screenshot 2026-04-02 141234.png">
-</head>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+    
 <body>
     <nav class="topbar">
         <div class="logo"></div>
-    
-        <div class="nav-right">
 
             {% block cvbutton %}{%endblock%}
-            
-            <button class="arrow-btn">→</button>
+            <a href="{% url 'signup' %}" class="arrow-btn">→</a>
         </div>
+    
     </nav>
     <main>
         {% block content %}

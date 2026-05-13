@@ -31,7 +31,7 @@ body {
     justify-content: center;
 }
 
-.nav-right button {
+.arrow-btn {
     background: #0f8a5f;
     border: none;
     color: white;
@@ -39,7 +39,12 @@ body {
     margin-left: 10px;
     cursor: pointer;
     flex-shrink: 0; 
-    border-radius: 8px; 
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.arrow-btn:hover {
+    background: #0a6e47;
 }
 
 /* HERO SECTION */
@@ -229,4 +234,55 @@ body {
 
 .use-template-btn:hover {
     background: #0a6e47;
+}
+/* SIGNUP PAGE */
+.signup-page {
+    background: #9BC68D;
+    height: calc(100vh - 90px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-box {
+    width: 350px;
+    background: #f1f5f5;
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.signup-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-box label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.signup-box input {
+    padding: 10px;
+    border: none;
+    background: #d9d9d9;
+}
+
+.signup-box button {
+    margin-top: 30px;
+    padding: 12px;
+
+    background: #0f8a5f;
+    color: white;
+
+    border: none;
+    cursor: pointer;
 }
