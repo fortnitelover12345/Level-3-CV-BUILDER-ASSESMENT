@@ -27,15 +27,3 @@ def templates_view(request):
         filtered_templates = [t for t in filtered_templates if t['layout'] == layout]
 
     return render(request, 'templates.html', {'templates': filtered_templates})
-from django.shortcuts import render, redirect
-from .forms import SignUpForm
-
-def signup_view(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()  # Save the user
-            return redirect('login')  # Redirect to login page after successful sign-up
-    else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})

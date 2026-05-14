@@ -1,4 +1,5 @@
 Set-ExecutionPolicy Unrestricted -Scope Process ;  .venv/Scripts/activate ; cd launchpad ;  py manage.py runserver
+Get-ChildItem -Path . -Filter "desktop.ini" -Recurse -Force -ErrorAction SilentlyContinue | Remove-Item -Force
 
  Launchpad CVS
 Created by Karamveer Singh
