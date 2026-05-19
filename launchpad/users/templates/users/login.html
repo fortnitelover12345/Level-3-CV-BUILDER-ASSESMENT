@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <div class="login-box">
+        <h1>Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <label for="id_username">Username</label>
+            {{ form.username }}
+            <div class="error">{{ form.username.errors }}</div>
+
+            <label for="id_password">Password</label>
+            {{ form.password }}
+            <div class="error">{{ form.password.errors }}</div>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+</div>
+{% endblock %}

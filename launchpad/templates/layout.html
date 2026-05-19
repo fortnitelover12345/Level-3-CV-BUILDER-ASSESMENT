@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/main.js' %}" defer></script>
     <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
     
 <body>
     <nav class="topbar">
-        <div class="logo"></div>
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
 
             {% block cvbutton %}{%endblock%}
             <a href="{% url 'signup' %}" class="arrow-btn">→</a>

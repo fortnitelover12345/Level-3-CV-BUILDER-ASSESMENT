@@ -1,6 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 
-# Create your views here.
 def templates(request):
     #return HttpResponse("This is the template page.")
-    return render(request, 'users/signup.html')
+    form = UserCreationForm()
+    return render(request, 'users/signup.html', {'form': form})
+
+from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the user
+            return redirect('login')  # Redirect to login page after successful sign-up
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
