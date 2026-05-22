@@ -1,13 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm
-
-def templates(request):
-    #return HttpResponse("This is the template page.")
-    form = UserCreationForm()
-    return render(request, 'users/signup.html', {'form': form})
-
-from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 
 def signup_view(request):
@@ -18,4 +9,4 @@ def signup_view(request):
             return redirect('login')  # Redirect to login page after successful sign-up
     else:
         form = CustomUserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'users/signup.html', {'form': form})
