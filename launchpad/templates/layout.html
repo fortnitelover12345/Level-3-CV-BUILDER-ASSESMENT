@@ -12,17 +12,17 @@
     <script src="{% static 'js/main.js' %}" defer></script>
     <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
 
-    
 <body>
     <nav class="topbar">
         <div class="logo">
             <img src="{% static 'images/logo.png' %}" alt="Logo">
         </div>
 
-            {% block cvbutton %}{%endblock%}
-            <a href="{% url 'signup' %}" class="arrow-btn">→</a>
+        <div class="nav-links">
+            {% block cvbutton %}{% endblock %}
+            <a href="{% url 'signup' %}" class="arrow-btn">Sign up</a>
+            <a href="{% url 'login' %}" class="login-btn">Login</a>
         </div>
-    
     </nav>
     <main>
         {% block content %}

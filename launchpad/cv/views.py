@@ -4,3 +4,6 @@ from django.shortcuts import render
 def templates(request):
     #return HttpResponse("This is the template page.")
     return render(request, 'cv/templates.html')
+
+def overview(request): 
+    return render(request, 'cv/overview.html')
