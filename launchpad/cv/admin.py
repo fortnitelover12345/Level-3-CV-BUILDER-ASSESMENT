@@ -1,3 +1,7 @@
 from django.contrib import admin
+from cv.models import CVProfile
 
-# Register your models here.
+@admin.register(CVProfile)
+class CVProfileAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'phone', 'experience')  
+    search_fields = ('full_name', 'email')          

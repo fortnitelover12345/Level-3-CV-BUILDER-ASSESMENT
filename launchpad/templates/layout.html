@@ -15,9 +15,10 @@
 <body>
     <nav class="topbar">
         <div class="logo">
-            <img src="{% static 'images/logo.png' %}" alt="Logo">
+            <a href="/">
+                <img src="{% static 'images/logo.png' %}" alt="Company Logo">
+            </a>
         </div>
-
         <div class="nav-links">
             {% block cvbutton %}{% endblock %}
             <a href="{% url 'signup' %}" class="arrow-btn">Sign up</a>

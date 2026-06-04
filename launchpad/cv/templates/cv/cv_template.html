@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ profile.full_name }} - CV</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body class="bg-light py-5">
+    <div class="container bg-white p-5 shadow-sm" style="max-width: 800px;">
+        <!-- Header Section -->
+        <header class="border-bottom pb-3 mb-4 text-center">
+            <h1 class="display-5 fw-bold">{{ profile.full_name }}</h1>
+            <p class="text-muted">{{ profile.email }} | {{ profile.phone }}</p>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="mb-4">
+            <h3 class="text-primary">Professional Summary</h3>
+            <p>{{ profile.summary }}</p>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="mb-4">
+            <h3 class="text-primary">Experience</h3>
+            <!-- Using linebreaks filter to preserve formatting -->
+            <p>{{ profile.experience|linebreaks }}</p> 
+        </section>
+
+        <!-- Education Section -->
+        <section class="mb-4">
+            <h3 class="text-primary">Education</h3>
+            <p>{{ profile.education|linebreaks }}</p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="mb-4">
+            <h3 class="text-primary">Skills</h3>
+            <div>
+                {% for skill in skills %}
+                    <span class="badge bg-secondary p-2 me-1 mb-1">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>
