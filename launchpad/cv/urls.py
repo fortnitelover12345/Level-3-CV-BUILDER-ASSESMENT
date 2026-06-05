@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
         path('templates/', views.templates, name='templates'),
         path('overview/', views.overview, name='overview'),
-        path('cv/<int:profile_id>/', views.cv_view, name='cv_template'),
+        path('edit/', views.edit_profile, name='edit_profile'),
+        path('cv/<int:profile_id>/', views.overview, name='cv_template'),
     ]
