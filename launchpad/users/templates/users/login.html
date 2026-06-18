@@ -1,29 +1,50 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-Login
+Log In
 {% endblock %}
 
 {% block content %}
-<div class="signup-page"> 
-    <div class="signup-box"> 
-        <h1>Login</h1>
+
+<div class="form-container">
+    <div class="form-card">
+        {% if request.GET.next %}
+        <div style="background-color: #fef2f2; border: 1px solid #fee2e2; color: #dc2626; padding: 12px; border-radius: 6px; margin: 15px 0; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; text-align: left; display: flex; align-items: center; gap: 8px;">
+            ⚠️ You must log in to proceed and select a CV template!
+        </div>
+    {% endif %}
+        <h1>Log In</h1>    
         <form method="POST">
             {% csrf_token %}
             
-            <label for="id_username">Username</label>
-            {{ form.username }}
-            <div class="error">{{ form.username.errors }}</div>
 
-            <label for="id_password">Password</label>
-            {{ form.password }}
-            <div class="error">{{ form.password.errors }}</div>
+            {% if form.non_field_errors %}
+                <div class="error" style="margin-bottom: 15px;">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
 
-            <button type="submit">Login</button>
+
+            <div class="form-group">
+                <label for="id_username">Username or Email</label>
+                {{ form.username }}
+                <div class="error">{{ form.username.errors }}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                {{ form.password }}
+                <div class="error">{{ form.password.errors }}</div>
+            </div>
+
+
+            <button type="submit" class="btn-submit">Log In</button>
         </form>
-        <p style="text-align: center; margin-top: 20px;">
-            Don't have an account? <a href="{% url 'signup' %}" style="color: #0f8a5f; text-decoration: none;">Sign Up</a>
+
+        <p style="text-align: center; font-size: 13px; margin-top: 25px; color: #475569; font-family: Arial, sans-serif;">
+            Don't have an account yet? <a href="{% url 'signup' %}" style="color: #15803d; font-weight: bold; text-decoration: none;">Sign Up</a>
         </p>
     </div>
+
 </div>
 {% endblock %}

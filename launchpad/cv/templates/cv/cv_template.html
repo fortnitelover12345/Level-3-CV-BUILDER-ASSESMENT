@@ -1,15 +1,95 @@
-<header class="bg-slate-800 text-white p-8">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-            <!-- 👇 Since first_name is absent, display their account email as a prominent title fallback -->
-            <h1 class="text-3xl font-extrabold tracking-wide uppercase">
-                {{ profile.user.email }}
-            </h1>
-            <p class="text-slate-400 font-medium mt-1">Professional Curriculum Vitae</p>
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+
+{% block title %}
+My Live CV
+{% endblock %}
+
+
+<div class="cv-preview-bg">
+
+    
+
+    <div class="cv-container {% if profile.design_choice == 'template2' %}t2-container{% elif profile.design_choice == 'template3' %}t3-container{% elif profile.design_choice == 'template4' %}t4-container{% elif profile.design_choice == 'template5' %}t5-container{% elif profile.design_choice == 'template6' %}t6-container{% elif profile.design_choice == 'template7' %}t7-container{% elif profile.design_choice == 'template8' %}t8-container{% elif profile.design_choice == 'template9' %}t9-container{% elif profile.design_choice == 'template10' %}t10-container{% elif profile.design_choice == 'template11' %}t11-container{% elif profile.design_choice == 'template12' %}t12-container{% else %}t11-container{% endif %}">
+        
+    {% if profile.design_choice == 'template2' %}
+    <header class="t2-header">
+        <h1>{{ profile.full_name|default:profile.user.username }}</h1>
+        <p>✉ {{ profile.user.email }} &nbsp;|&nbsp; 📞 {{ profile.phone|default:"Not specified" }}</p>
+    </header>
+{% elif profile.design_choice == 'template3' %}
+    <header class="t3-header">
+        <h1>{{ profile.full_name|default:profile.user.username }}</h1>
+        <p>✉ {{ profile.user.email }} &nbsp;•&nbsp; 📞 {{ profile.phone|default:"Not specified" }}</p>
+    </header>
+{% elif profile.design_choice == 'template4' %}
+    <header class="t4-header">
+        <h1>{{ profile.full_name|default:profile.user.username }}</h1>
+        <p>EMAIL: {{ profile.user.email }} &nbsp;//&nbsp; PHONE: {{ profile.phone|default:"Not specified" }}</p>
+    </header>
+{% elif profile.design_choice == 'template5' %}
+    <header class="t5-header">
+        <h1>{{ profile.full_name|default:profile.user.username }}</h1>
+        <p>✉ {{ profile.user.email }} &nbsp;|&nbsp; 📞 {{ profile.phone|default:"Not specified" }}</p>
+    </header>
+{% elif profile.design_choice == 'template6' %}
+    <header class="t6-header">
+        <h1>{{ profile.full_name|default:profile.user.username }}</h1>
+        <p style="color: #78350f;">✉ {{ profile.user.email }} &nbsp;•&nbsp; 📞 {{ profile.phone|default:"Not specified" }}</p>
+    </header>
+{% else %}
+    <header class="cv-header t1-header">
+        <h1>{{ profile.full_name|default:profile.user.username }}</h1>
+        <p style="margin-top: 10px; color: #475569; font-size: 15px;">
+            ✉ Email Address: {{ profile.user.email }} <span style="margin: 0 15px; color: #cbd5e1;">|</span> 📞 Phone Connection: {{ profile.phone|default:"Not specified" }}
+        </p>
+    </header>
+{% endif %}
+
+    <!--  DYNAMIC CONTENT BODY BLOCKS SWITCH -->
+    {% if profile.design_choice == 'template4' %}
+        <!-- Single Column Stacking Layout for Template 4 -->
+        <div class="cv-content-single">
+            <div class="t4-section"><h2>Professional Summary</h2><p class="cv-text">{{ profile.summary }}</p></div>
+            <div class="t4-section"><h2>Core Skills</h2><p class="cv-text">{{ profile.skills }}</p></div>
+            <div class="t4-section"><h2>Work History</h2><p class="cv-text">{{ profile.experience }}</p></div>
+            <div class="t4-section"><h2>Education & Schooling</h2><p class="cv-text">{{ profile.education }}</p></div>
         </div>
-        <div class="text-sm space-y-1 text-slate-300">
-            <p>✉️ {{ profile.user.email }}</p>
-            <p>📞 {{ profile.phone }}</p>
+    {% else %}
+        <!-- Double Column Layout for Templates 1, 2, and 3 -->
+        <div class="cv-content">
+            <aside>
+                <div class="{% if profile.design_choice == 'template2' %}t2-section{% elif profile.design_choice == 'template3' %}t3-section{% elif profile.design_choice == 'template5' %}t5-section{% elif profile.design_choice == 'template6' %}t6-section{% else %}t1-section{% endif %}">
+                    <h2>Core Skills</h2>
+                    <p class="cv-text">{{ profile.skills|default:"No skills listed yet." }}</p>
+                </div>
+            </aside>
+            <main>
+                <div class="{% if profile.design_choice == 'template2' %}t2-section{% elif profile.design_choice == 'template3' %}t3-section{% elif profile.design_choice == 'template5' %}t5-section{% elif profile.design_choice == 'template6' %}t6-section{% else %}t1-section{% endif %}">
+                    <h2>Professional Summary</h2>
+                    <p class="cv-text">{{ profile.summary|default:"No summary listed yet." }}</p>
+                </div>
+                <div class="{% if profile.design_choice == 'template2' %}t2-section{% elif profile.design_choice == 'template3' %}t3-section{% elif profile.design_choice == 'template5' %}t5-section{% elif profile.design_choice == 'template6' %}t6-section{% else %}t1-section{% endif %}">
+                    <h2>Work History</h2>
+                    <p class="cv-text">{{ profile.experience|default:"No history listed yet." }}</p>
+                </div>
+                <div class="{% if profile.design_choice == 'template2' %}t2-section{% elif profile.design_choice == 'template3' %}t3-section{% elif profile.design_choice == 'template5' %}t5-section{% elif profile.design_choice == 'template6' %}t6-section{% else %}t1-section{% endif %}">
+                    <h2>Education & Schooling</h2>
+                    <p class="cv-text">{{ profile.education|default:"No education listed yet." }}</p>
+                </div>
+            </main>
         </div>
-    </div>
-</header>
+    {% endif %}
+
+    <footer class="cv-footer">
+        <a href="{% url 'template_gallery' %}" class="cv-link-edit">Change Layout Theme</a>
+        <a href="{% url 'edit_profile' %}" class="cv-link-edit">✏ Edit Content Text</a>
+        <button onclick="window.print();" class="cv-btn-print">🖨 Save or Print as PDF</button>
+    </footer>
+
+</div>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,159 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} CV Templates {% endblock %}
+{% block content %}
+<div class="templatepage-selection">
+    <h1>Choose Your CV Template</h1>
+    
+    <div class="template-previews">
+        <div class="filter-dropdowns">
+            <select id="category-filter" class="filter-dropdown">
+                <option value="">Select Category</option>
+                <option value="professional">Professional</option>
+                <option value="creative">Creative</option>
+                <option value="modern">Modern</option>
+            </select>
+    
+            <select id="color-filter" class="filter-dropdown">
+                <option value="">Select Color</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="teal">Teal</option>
+                <option value="charcoal">Charcoal</option>
+                <option value="ochre">Ochre</option>
+                <option value="red">Red</option>
+                <option value="dark">Dark</option>
+                <option value="amber">Amber</option>
+            </select>
+    
+            <select id="layout-filter" class="filter-dropdown">
+                <option value="">Select Layout</option>
+                <option value="two-column">Two Column</option>
+                <option value="single-column">Single Column</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- MAIN CARD CONTROLLER GRID ROW -->
+    <div class="template-grid">
+        <!-- Template 1 -->
+        <div class="template-card" data-category="modern" data-color="green" data-layout="two-column">
+            <img src="{% static 'images/template1.png' %}" alt="Template 1 Preview" class="template-preview-img">
+            <h3>Modern Green</h3>
+            <a href="{% url 'preview_template' 'template1' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 2 -->
+        <div class="template-card" data-category="professional" data-color="blue" data-layout="two-column">
+            <img src="{% static 'images/template2.png' %}" alt="Template 2 Preview" class="template-preview-img">
+            <h3>Classic Slate</h3>
+            <a href="{% url 'preview_template' 'template2' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 3 -->
+        <div class="template-card" data-category="creative" data-color="teal" data-layout="two-column">
+            <img src="{% static 'images/template3.png' %}" alt="Template 3 Preview" class="template-preview-img">
+            <h3>Creative Teal</h3>
+            <a href="{% url 'preview_template' 'template3' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 4 -->
+        <div class="template-card" data-category="modern" data-color="blue" data-layout="single-column">
+            <img src="{% static 'images/template4.png' %}" alt="Template 4 Preview" class="template-preview-img">
+            <h3>Minimal Elegant</h3>
+            <a href="{% url 'preview_template' 'template4' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 5 -->
+        <div class="template-card" data-category="professional" data-color="charcoal" data-layout="two-column">
+            <img src="{% static 'images/template5.png' %}" alt="Template 5 Preview" class="template-preview-img">
+            <h3>Executive Charcoal</h3>
+            <a href="{% url 'preview_template' 'template5' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 6 -->
+        <div class="template-card" data-category="creative" data-color="ochre" data-layout="two-column">
+            <img src="{% static 'images/template6.png' %}" alt="Template 6 Preview" class="template-preview-img">
+            <h3>Warm Ochre</h3>
+            <a href="{% url 'preview_template' 'template6' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 7 -->
+        <div class="template-card" data-category="creative" data-color="red" data-layout="two-column">
+            <img src="{% static 'images/template7.png' %}" alt="Template 7 Preview" class="template-preview-img">
+            <h3>Rose Wine</h3>
+            <a href="{% url 'preview_template' 'template7' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 8 -->
+        <div class="template-card" data-category="professional" data-color="blue" data-layout="two-column">
+            <img src="{% static 'images/template8.png' %}" alt="Template 8 Preview" class="template-preview-img">
+            <h3>Royal Blue</h3>
+            <a href="{% url 'preview_template' 'template8' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 9 -->
+        <div class="template-card" data-category="creative" data-color="dark" data-layout="two-column">
+            <img src="{% static 'images/template9.png' %}" alt="Template 9 Preview" class="template-preview-img">
+            <h3>Dark Mode</h3>
+            <a href="{% url 'preview_template' 'template9' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 10 -->
+        <div class="template-card" data-category="modern" data-color="charcoal" data-layout="single-column">
+            <img src="{% static 'images/template10.png' %}" alt="Template 10 Preview" class="template-preview-img">
+            <h3>Minimal Stack</h3>
+            <a href="{% url 'preview_template' 'template10' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 11 -->
+        <div class="template-card" data-category="modern" data-color="green" data-layout="two-column">
+            <img src="{% static 'images/template11.png' %}" alt="Template 11 Preview" class="template-preview-img">
+            <h3>Forest Compact</h3>
+            <a href="{% url 'preview_template' 'template11' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+
+        <!-- Template 12 -->
+        <div class="template-card" data-category="professional" data-color="amber" data-layout="two-column">
+            <img src="{% static 'images/template12.png' %}" alt="Template 12 Preview" class="template-preview-img">
+            <h3>Amber Clean</h3>
+            <a href="{% url 'preview_template' 'template12' %}" class="use-template-btn" style="text-decoration: none; display: inline-block; text-align: center;">Preview Template</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const categoryFilter = document.getElementById("category-filter");
+        const colorFilter = document.getElementById("color-filter");
+        const layoutFilter = document.getElementById("layout-filter");
+        const cards = document.querySelectorAll(".template-card");
+
+        function filterTemplates() {
+            const selectedCategory = categoryFilter.value;
+            const selectedColor = colorFilter.value;
+            const selectedLayout = layoutFilter.value;
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute("data-category");
+                const cardColor = card.getAttribute("data-color");
+                const cardLayout = card.getAttribute("data-layout");
+
+                const matchesCategory = !selectedCategory || cardCategory === selectedCategory;
+                const matchesColor = !selectedColor || cardColor === selectedColor;
+                const matchesLayout = !selectedLayout || cardLayout === selectedLayout;
+
+                if (matchesCategory && matchesColor && matchesLayout) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        categoryFilter.addEventListener("change", filterTemplates);
+        colorFilter.addEventListener("change", filterTemplates);
+        layoutFilter.addEventListener("change", filterTemplates);
+    });
+</script>
+{% endblock %}

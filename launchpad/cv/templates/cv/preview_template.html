@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+Previewing CV Template
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'cv/style.css' %}">
+
+<!-- Sticky Action Choice Bar matching your main navigation bar look -->
+<div class="preview-sticky-bar">
+    <a href="{% url 'template_gallery' %}" class="preview-back-link">⬅ Back to Gallery</a>
+    
+    <span class="preview-title-text">
+        Previewing: {{ selected_template|upper }} Layout
+    </span>
+    
+    <form method="POST" style="margin: 0;">
+        {% csrf_token %}
+        <button type="submit" class="preview-submit-btn">
+            Use This Design & Fill Details
+        </button>
+    </form>
+</div>
+
+<!-- Live Resume Template Preview Section Wrapper -->
+<div class="cv-preview-bg preview-mode">
+
+    <!-- Dynamic Card Wrapper Box Swap -->
+    <div class="cv-container {% if selected_template == 'template2' %}t2-container{% elif selected_template == 'template3' %}t3-container{% elif selected_template == 'template4' %}t4-container{% elif selected_template == 'template5' %}t5-container{% elif selected_template == 'template6' %}t6-container{% elif selected_template == 'template7' %}t7-container{% elif selected_template == 'template8' %}t8-container{% elif selected_template == 'template9' %}t9-container{% elif selected_template == 'template10' %}t10-container{% elif selected_template == 'template11' %}t11-container{% elif selected_template == 'template12' %}t12-container{% else %}t1-container{% endif %}">
+        
+        <!-- DYNAMIC HEADERS FOR PREVIEW -->
+        {% if selected_template == 'template2' %}
+            <header class="t2-header"><h1>John Doe</h1><p>✉ john.doe@example.com &nbsp;|&nbsp; 📞 021 555 555</p></header>
+        {% elif selected_template == 'template3' %}
+            <header class="t3-header"><h1>John Doe</h1><p>✉ john.doe@example.com &nbsp;•&nbsp; 📞 021 555 555</p></header>
+        {% elif selected_template == 'template4' %}
+            <header class="t4-header"><h1>John Doe</h1><p>EMAIL: john.doe@example.com &nbsp;//&nbsp; PHONE: 021 555 555</p></header>
+        {% elif selected_template == 'template5' %}
+            <header class="t5-header"><h1>John Doe</h1><p>✉ john.doe@example.com &nbsp;|&nbsp; 📞 021 555 555</p></header>
+        {% elif selected_template == 'template6' %}
+            <header class="t6-header"><h1>John Doe</h1><p style="color: #78350f;">✉ john.doe@example.com &nbsp;•&nbsp; 📞 021 555 555</p></header>
+        {% elif selected_template == 'template7' %}
+            <header class="t7-header"><h1>John Doe</h1><p>✉ john.doe@example.com | 📞 021 555 555</p></header>
+        {% elif selected_template == 'template8' %}
+            <header class="t8-header"><h1>John Doe</h1><p>✉ john.doe@example.com | 📞 021 555 555</p></header>
+        {% elif selected_template == 'template9' %}
+            <header class="t9-header"><h1>John Doe</h1><p>✉ john.doe@example.com | 📞 021 555 555</p></header>
+        {% elif selected_template == 'template10' %}
+            <header class="t10-header"><h1>John Doe</h1><p>✉ john.doe@example.com | 📞 021 555 555</p></header>
+        {% elif selected_template == 'template11' %}
+            <header class="t11-header"><h1>John Doe</h1><p>✉ john.doe@example.com | 📞 021 555 555</p></header>
+        {% elif selected_template == 'template12' %}
+            <header class="t12-header"><h1>John Doe</h1><p>✉ john.doe@example.com | 📞 021 555 555</p></header>
+        {% else %}
+            <header class="cv-header t1-header"><h1>John Doe</h1><p style="margin-top: 10px; color: #475569; font-size: 15px;">✉ Email Address: john.doe@example.com <span style="margin: 0 15px; color: #cbd5e1;">|</span> 📞 Phone Connection: 021 555 555</p></header>
+        {% endif %}
+
+        {% if selected_template == 'template4' or selected_template == 'template10' %}
+        <!--  Single Column Layout Structure for Templates 4 & 10 -->
+        <div class="cv-content-single">
+            <div class="{% if selected_template == 'template4' %}t4-section{% else %}t10-section{% endif %}">
+                <h2>Professional Summary</h2>
+                <p class="cv-text">This is a sample professional summary block. It shows exactly how your typed content text values will look inside this specific template box section.</p>
+            </div>
+            <div class="{% if selected_template == 'template4' %}t4-section{% else %}t10-section{% endif %}">
+                <h2>Core Skills</h2>
+                <p class="cv-text">Python, Django Framework, HTML5, CSS Grid Layouts, Teamwork, Communication</p>
+            </div>
+            <div class="{% if selected_template == 'template4' %}t4-section{% else %}t10-section{% endif %}">
+                <h2>Work History</h2>
+                <p class="cv-text">Junior Web Developer at Kiwi Tech Ltd (2024 - Present)<br>- Developed responsive web interfaces using Python and Django.<br>- Collaborative team planning environment execution paths.</p>
+            </div>
+            <div class="{% if selected_template == 'template4' %}t4-section{% else %}t10-section{% endif %}">
+                <h2>Education & Schooling</h2>
+                <p class="cv-text">National Certificate in Computing (Level 3)<br>Otumoetai College</p>
+            </div>
+        </div>
+    {% else %}
+        <!-- Standard Split Double Column Layout for Remaining Templates -->
+        <div class="cv-content" style="{% if selected_template == 'template9' %}background-color: #0f172a; color: #f8fafc;{% else %}background-color: #ffffff; color: #334155;{% endif %}">
+            <aside>
+                <div class="{% if selected_template == 'template2' %}t2-section{% elif selected_template == 'template3' %}t3-section{% elif selected_template == 'template5' %}t5-section{% elif selected_template == 'template6' %}t6-section{% elif selected_template == 'template7' %}t7-section{% elif selected_template == 'template8' %}t8-section{% elif selected_template == 'template9' %}t9-section{% elif selected_template == 'template11' %}t11-section{% elif selected_template == 'template12' %}t12-section{% else %}t1-section{% endif %}">
+                    <h2>Core Skills</h2>
+                    <p class="cv-text" style="{% if selected_template == 'template9' %}color: #cbd5e1;{% endif %}">Python, Django Framework, HTML5, CSS Grid Layouts, Teamwork, Communication</p>
+                </div>
+            </aside>
+            <main>
+                <div class="{% if selected_template == 'template2' %}t2-section{% elif selected_template == 'template3' %}t3-section{% elif selected_template == 'template5' %}t5-section{% elif selected_template == 'template6' %}t6-section{% elif selected_template == 'template7' %}t7-section{% elif selected_template == 'template8' %}t8-section{% elif selected_template == 'template9' %}t9-section{% elif selected_template == 'template11' %}t11-section{% elif selected_template == 'template12' %}t12-section{% else %}t1-section{% endif %}">
+                    <h2>Professional Summary</h2>
+                    <p class="cv-text" style="{% if selected_template == 'template9' %}color: #cbd5e1;{% endif %}">This is a sample professional summary block. It shows exactly how your typed content text values will look inside this specific template box section.</p>
+                </div>
+                <div class="{% if selected_template == 'template2' %}t2-section{% elif selected_template == 'template3' %}t3-section{% elif selected_template == 'template5' %}t5-section{% elif selected_template == 'template6' %}t6-section{% elif selected_template == 'template7' %}t7-section{% elif selected_template == 'template8' %}t8-section{% elif selected_template == 'template9' %}t9-section{% elif selected_template == 'template11' %}t11-section{% elif selected_template == 'template12' %}t12-section{% else %}t1-section{% endif %}">
+                    <h2>Work History</h2>
+                    <p class="cv-text" style="{% if selected_template == 'template9' %}color: #cbd5e1;{% endif %}">Junior Web Developer at Kiwi Tech Ltd (2024 - Present)<br>
+                    - Developed responsive web interfaces using Python and Django.<br>
+                    - Collaborative team planning environment execution paths.</p>
+                </div>
+                <div class="{% if selected_template == 'template2' %}t2-section{% elif selected_template == 'template3' %}t3-section{% elif selected_template == 'template5' %}t5-section{% elif selected_template == 'template6' %}t6-section{% elif selected_template == 'template7' %}t7-section{% elif selected_template == 'template8' %}t8-section{% elif selected_template == 'template9' %}t9-section{% elif selected_template == 'template11' %}t11-section{% elif selected_template == 'template12' %}t12-section{% else %}t1-section{% endif %}">
+                    <h2>Education & Schooling</h2>
+                    <p class="cv-text" style="{% if selected_template == 'template9' %}color: #cbd5e1;{% endif %}">National Certificate in Computing (Level 3)<br>
+                    Otumoetai College</p>
+                </div>
+            </main>
+        </div>
+    {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

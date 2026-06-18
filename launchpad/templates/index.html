@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
-  
-  {% block title %} Home {% endblock %}
+{% load static %}
+{% block title %} Home {% endblock %}
 
-  {% block content %}
+{% block content %}
   <div class="hero">
     <div class="main-box">
         Welcome to Launchpad CV Builder! 
@@ -18,16 +18,47 @@
 
 <div class="templates-section">
   <div class="templates-btn">
-      <a href="{% url 'templates' %}">Templates</a>
+      <a href="{% url 'template_gallery' %}">Templates</a>
   </div>
-
   <div class="template-grid">
-      <div class="template-card"></div>
-      <div class="template-card"></div>
-      <div class="template-card"></div>
-      <div class="template-card"></div>
-      <div class="template-card"></div>
-  </div>
-</div>
+    <!-- 🌿 Template Card 1 -->
+    <div class="template-card">
+        <a href="{% url 'preview_template' 'template1' %}" style="text-decoration: none; color: inherit; height: 100%;">
+            <img src="{% static 'images/template1.png' %}" alt="Modern Green Layout">
+            <span>Modern Green</span>
+        </a>
+    </div>
+
+    <!-- 🌑 Template Card 2 -->
+    <div class="template-card">
+        <a href="{% url 'preview_template' 'template2' %}" style="text-decoration: none; color: inherit; height: 100%;">
+            <img src="{% static 'images/template2.png' %}" alt="Classic Slate Layout">
+            <span>Classic Slate</span>
+        </a>
+    </div>
+
+    <!-- 🌊 Template Card 3 -->
+    <div class="template-card">
+        <a href="{% url 'preview_template' 'template3' %}" style="text-decoration: none; color: inherit; height: 100%;">
+            <img src="{% static 'images/template3.png' %}" alt="Creative Teal Layout">
+            <span>Creative Teal</span>
+        </a>
+    </div>
+
+    <!-- ✉ Template Card 4 -->
+    <div class="template-card">
+        <a href="{% url 'preview_template' 'template4' %}" style="text-decoration: none; color: inherit; height: 100%;">
+            <img src="{% static 'images/template4.png' %}" alt="Minimal Elegant Layout">
+            <span>Minimal Elegant</span>
+        </a>
+    </div>
+
+    <!-- 🌑 Template Card 5 -->
+    <div class="template-card">
+        <a href="{% url 'preview_template' 'template5' %}" style="text-decoration: none; color: inherit; height: 100%;">
+            <img src="{% static 'images/template5.png' %}" alt="Executive Charcoal Layout">
+            <span>Charcoal Executive</span>
+        </a>
+    </div>
 </div>
   {% endblock %}

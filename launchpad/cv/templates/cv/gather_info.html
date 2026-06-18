@@ -1,91 +1,123 @@
-<!-- templates/gather_info.html -->
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% load static %}
+{% block content%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Your CV Information</title>
-    <script src="https://jsdelivr.net"></script>
+    <title>Build Your CV</title>
+    <link rel="stylesheet" href="{% static 'cv/style.css' %}">
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen flex items-center justify-center p-4 sm:p-6">
-
-    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-100 w-full max-w-2xl">
+<body>
+<div class="form-container">
+    <div class="form-card">
+        <h1>Build Your CV</h1>
+        <p class="subtitle">Fill out your details below to instantly update your live CV template.</p>
         
-        <!-- Header Branding Meta -->
-        <div class="mb-8">
-            <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">CV Builder</h1>
-            <p class="text-slate-500 mt-2 text-sm">Logged in as: <span class="font-medium text-slate-700">{{ request.user.email }}</span></p>
-        </div>
-
-        <!-- Submission Form Processing Area -->
-        <form method="POST" class="space-y-6">
+        <form method="POST">
             {% csrf_token %}
-
-            <!-- Form Validation Global Field Error Banner -->
-            {% if form.errors %}
-                <div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-md">
-                    <p class="text-sm font-semibold text-rose-800">Please correct the highlighted errors below before continuing.</p>
-                </div>
-            {% endif %}
-
-            <!-- 📞 1. Contact Phone Input Row -->
-            <div>
-                <label for="{{ form.phone.id_for_label }}" class="block text-sm font-bold text-slate-700 tracking-wide uppercase mb-1.5">
-                    Contact Phone Number
-                </label>
-                <input 
-                    type="text" 
-                    name="{{ form.phone.name }}" 
-                    id="{{ form.phone.id_for_label }}" 
-                    value="{{ form.phone.value|default:'' }}"
-                    placeholder="+64 21 000 0000"
-                    class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition duration-200 text-sm"
-                >
-                {% if form.phone.errors %}
-                    <p class="text-xs text-rose-600 mt-1 font-medium">{{ form.phone.errors.0 }}</p>
-                {% endif %}
+    <!-- Full Name Block -->
+    <div class="form-group">
+        <label for="{{ form.full_name.id_for_label }}">Full Name</label>
+        <input 
+            type="text" 
+            name="{{ form.full_name.name }}" 
+            id="{{ form.full_name.id_for_label }}" 
+            value="{{ form.full_name.value|default:'' }}"
+            placeholder="e.g., Jane Doe"
+        >
+        {% if form.full_name.errors %}
+            <div class="error-text" style="color: #dc2626; font-size: 13px; font-weight: bold; margin-top: 5px;">
+                {{ form.full_name.errors.0 }}
             </div>
+        {% endif %}
+    </div>
 
-            <!-- 💼 2. Work History / Experience Entry Area -->
-            <div>
-                <label for="{{ form.experience.id_for_label }}" class="block text-sm font-bold text-slate-700 tracking-wide uppercase mb-1.5">
-                    Professional Experience
-                </label>
-                <textarea 
-                    name="{{ form.experience.name }}" 
-                    id="{{ form.experience.id_for_label }}" 
-                    placeholder="• Senior Web Developer at TechCorp (2024 - Present)&#10;  - Built responsive backend engines utilizing Python platforms..."
-                    class="w-full h-36 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition duration-200 text-sm resize-none"
-                >{{ form.experience.value|default:'' }}</textarea>
-                {% if form.experience.errors %}
-                    <p class="text-xs text-rose-600 mt-1 font-medium">{{ form.experience.errors.0 }}</p>
-                {% endif %}
+    <!--  Phone Number Block -->
+    <div class="form-group">
+        <label for="{{ form.phone.id_for_label }}">Phone Number</label>
+        <input 
+            type="text" 
+            name="{{ form.phone.name }}" 
+            id="{{ form.phone.id_for_label }}" 
+            value="{{ form.phone.value|default:'' }}"
+            placeholder="e.g., 022 102 25"
+        >
+        {% if form.phone.errors %}
+            <div class="error-text" style="color: #dc2626; font-size: 13px; font-weight: bold; margin-top: 5px;">
+                {{ form.phone.errors.0 }}
             </div>
+        {% endif %}
+    </div> 
 
-            <!-- 🎓 3. Credentials / Education Entry Area -->
-            <div>
-                <label for="{{ form.education.id_for_label }}" class="block text-sm font-bold text-slate-700 tracking-wide uppercase mb-1.5">
-                    Education & Credentials
-                </label>
-                <textarea 
-                    name="{{ form.education.name }}" 
-                    id="{{ form.education.id_for_label }}" 
-                    placeholder="• Bachelor of Computer Science&#10;  University of Auckland (2021 - 2024)"
-                    class="w-full h-32 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition duration-200 text-sm resize-none"
-                >{{ form.education.value|default:'' }}</textarea>
-                {% if form.education.errors %}
-                    <p class="text-xs text-rose-600 mt-1 font-medium">{{ form.education.errors.0 }}</p>
-                {% endif %}
+    <!-- Professional Summary Block -->
+    <div class="form-group">
+        <label for="{{ form.summary.id_for_label }}">Professional Summary</label>
+        <textarea 
+            name="{{ form.summary.name }}" 
+            id="{{ form.summary.id_for_label }}" 
+            placeholder="Write a short paragraph about your career goals and what makes you a great candidate..."
+            style="height: 90px;"
+        >{{ form.summary.value|default:'' }}</textarea>
+        {% if form.summary.errors %}
+            <div class="error-text" style="color: #dc2626; font-size: 13px; font-weight: bold; margin-top: 5px;">
+                {{ form.summary.errors.0 }}
             </div>
+        {% endif %}
+    </div>
 
-            <!-- 🔘 Form Processing Submission Layout Footer -->
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
-                <button 
-                    type="submit" 
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-xl transition duration-200 shadow-md shadow-blue-100 cursor-pointer text-sm"
-                >
-                    Save Changes & View CV
-                </button>
+    <!-- Core Skills Block -->
+    <div class="form-group">
+        <label for="{{ form.skills.id_for_label }}">Core Skills</label>
+        <textarea 
+            name="{{ form.skills.name }}" 
+            id="{{ form.skills.id_for_label }}" 
+            placeholder="e.g., Python, Django, Customer Service, Teamwork (separate with commas)"
+            style="height: 70px;"
+        >{{ form.skills.value|default:'' }}</textarea>
+        {% if form.skills.errors %}
+            <div class="error-text" style="color: #dc2626; font-size: 13px; font-weight: bold; margin-top: 5px;">
+                {{ form.skills.errors.0 }}
             </div>
+        {% endif %}
+    </div>
+
+    <!--  Work Experience Block -->
+    <div class="form-group">
+        <label for="{{ form.experience.id_for_label }}">Work Experience</label>
+        <textarea 
+            name="{{ form.experience.name }}" 
+            id="{{ form.experience.id_for_label }}" 
+            placeholder="Where have you worked and what did you do?"
+        >{{ form.experience.value|default:'' }}</textarea>
+        {% if form.experience.errors %}
+            <div class="error-text" style="color: #dc2626; font-size: 13px; font-weight: bold; margin-top: 5px;">
+                {{ form.experience.errors.0 }}
+            </div>
+        {% endif %}
+    </div>
+
+    <!--  Education Block -->
+    <div class="form-group">
+        <label for="{{ form.education.id_for_label }}">Education & Schooling</label>
+        <textarea 
+            name="{{ form.education.name }}" 
+            id="{{ form.education.id_for_label }}" 
+            placeholder="List your high school, degrees, or courses..."
+        >{{ form.education.value|default:'' }}</textarea>
+        {% if form.education.errors %}
+            <div class="error-text" style="color: #dc2626; font-size: 13px; font-weight: bold; margin-top: 5px;">
+                {{ form.education.errors.0 }}
+            </div>
+        {% endif %}
+    </div>
+
+
+            <button type="submit" class="btn-submit">Save Changes & View CV</button>
         </form>
     </div>
+</div>
+    {% endblock %}
+
+</body>
+</html>
