@@ -220,7 +220,10 @@ body {
 .template-preview {
     display: flex;
     gap: 20px; 
-    justify-content: center; 
+    justify-content: flex-start; 
+    overflow-x: auto;            
+    padding: 20px;
+    width: 100%;
 }
 
 /* Filter Dropdowns Container */
@@ -267,23 +270,28 @@ body {
 /* Template Card */
 .template-card {
     width: 250px; 
+    height: 350px; /* Gives the card a fixed height */
     background: #ffffff;
     border: 2px solid #0f8a5f;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 20px;
+    padding: 15px; /* Reduced padding to give image more room */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between; /* Evenly spaces image, text, and button */
+    box-sizing: border-box;
 }
 
 
 .template-preview-img {
     width: 100%; 
-    height: auto; 
-    border-radius: 8px;
-    margin-bottom: 15px;
+    height: 200px; /* Restricts the image height */
+    object-fit: contain; /* Keeps aspect ratio without cropping */
+    background-color: #f8fafc; /* Adds a light background behind the preview */
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
 /* Template Title */
@@ -505,6 +513,14 @@ input[type="text"]:focus, textarea:focus {
     width: 100%;
     box-sizing: border-box;
 }
+.cv-footer-black {
+    padding: 20px 40px 40px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 
 .cv-link-edit {
@@ -603,11 +619,12 @@ input[type="text"]:focus, textarea:focus {
 .t1-section h2 { color: #166534; border-bottom: 2px solid #edf2f7; font-size: 15px; text-transform: uppercase; }
 
 /*  TEMPLATE 2: CLASSIC CORPORATE SLATE */
-.t2-container { border-radius: 4px; font-family: 'Times New Roman', Times, serif; }
+.t2-container { border-radius: 4px; font-family: 'Times New Roman', Times, serif; background-color: #ffffff !important;}
+.t2-container .cv-content { background-color: #ffffff !important; color: #334155 !important;}
 .t2-header { background-color: #1e293b; padding: 45px 40px; color: #ffffff; border-bottom: 4px solid #475569; }
-.t2-header h1 { color: #ffffff !important; font-size: 36px; letter-spacing: 1px; }
+.t2-header h1 { color: #ffffff !important; font-size: 36px; letter-spacing: 1px; text-transform: none;}
 .t2-header p { color: #cbd5e1 !important; }
-.t2-section h2 { color: #1e293b; border-bottom: 2px solid #1e293b; font-size: 16px; font-weight: bold; }
+.t2-section h2 { color: #1e3a8a; border-bottom: 2px solid #3b82f6; font-size: 16px; font-weight: bold; }
 
 /*  TEMPLATE 3: CREATIVE TEAL CENTRED */
 .t3-container { border-radius: 20px; font-family: 'Georgia', serif; }
@@ -654,7 +671,8 @@ input[type="text"]:focus, textarea:focus {
 .t9-header h1 { color: #ffffff !important; font-size: 32px; font-weight: bold; }
 .t9-header p { color: #94a3b8 !important; font-size: 14px; }
 .t9-section h2 { color: #3b82f6; border-bottom: 1px solid #334155; font-size: 15px; padding-bottom: 6px; }
-.t9-container .cv-text { color: #cbd5e1 !important; } /* High visibility text over dark slate */
+.t9-container .cv-text { color: #ffffff !important; /* ⚪ Forces your summary and work body text to pure white */}
+.t9-container .cv-content { background-color: #0f172a !important; /* 🌑 Keeps the inner grid background matching dark navy */}
 
 /* --- TEMPLATE 10: MINIMAL STACK (SINGLE COLUMN) --- */
 .t10-container { border-radius: 0px; font-family: Arial, sans-serif; }
@@ -686,6 +704,17 @@ input[type="text"]:focus, textarea:focus {
     margin: 30px auto 0 auto;
     justify-content: center;
 }
+.homepage-template-grid {
+    display: flex;
+    gap: 20px; 
+    justify-content: center; /* Centers all 5 cards under the badge */
+    flex-wrap: nowrap;       /* Keeps them locked on one single row */
+    overflow-x: auto;        
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 
 
 .template-card {
@@ -710,10 +739,55 @@ input[type="text"]:focus, textarea:focus {
     background-color: #f1f5f9; 
     display: block;
 }
-
-/* Custom layout accent fill tones for your brand-new template row blocks */
 .template-card[data-color="red"] img { background-color: #ffe4e6; }       
 .template-card[data-color="blue"] img { background-color: #dbeafe; }      
 .template-card[data-color="dark"] img { background-color: #334155; }     
 .template-card[data-color="charcoal"] img { background-color: #f1f5f9; }  
 .template-card[data-color="amber"] img { background-color: #fef3c7; }    
+
+@media print {
+  
+    .cv-preview-bg a,
+    .cv-preview-bg button,
+    div[style*="display: flex"]:has(a) { 
+        display: none !important; 
+    }
+
+     .topbar, 
+     .arrow-btn, 
+     .login-btn,
+     .btn-submit,
+     .templates-btn,
+     .cv-preview-bg > button,
+     .cv-preview-bg > a,
+     .cv-preview-bg > span {
+         display: none !important;
+     }
+ 
+
+     .cv-preview-bg {
+         background: none !important;
+         background-color: transparent !important;
+         padding: 0 !important;
+         margin: 0 !important;
+         display: block !important;
+     }
+ 
+
+     body {
+         padding-top: 0 !important;
+         margin: 0 !important;
+         background: #ffffff !important;
+     }
+ 
+
+     .cv-container {
+         width: 100% !important;
+         max-width: 100% !important;
+         margin: 0 !important;
+         padding: 0 !important;
+         box-shadow: none !important;
+         border: none !important;
+         display: flex !important;
+     }
+}

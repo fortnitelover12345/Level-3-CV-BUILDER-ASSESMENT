@@ -21,9 +21,17 @@
         </div>
         <div class="nav-links">
             {% block cvbutton %}{% endblock %}
-            <a href="{% url 'signup' %}" class="arrow-btn">Sign up</a>
-            <a href="{% url 'login' %}" class="login-btn">Login</a>
-        </div>
+            
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="login-btn" style="cursor: pointer;">Log out</button>
+                </form>
+            {% else %}
+                <a href="{% url 'signup' %}" class="arrow-btn">Sign up</a>
+                <a href="{% url 'login' %}" class="login-btn">Login</a>
+            {% endif %}
+            </div>        
     </nav>
     <main>
         {% block content %}

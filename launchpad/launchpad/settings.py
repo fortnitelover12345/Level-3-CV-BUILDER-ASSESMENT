@@ -127,6 +127,6 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = '/login/'  
 
-LOGIN_REDIRECT_URL = 'edit_profile'
+LOGIN_REDIRECT_URL = 'template_gallery'
 
 LOGIN_URL = 'login'

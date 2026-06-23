@@ -9,7 +9,6 @@
        <div class="subheading">Your one-stop solution for creating stunning CVs effortlessly.</div> 
     </div>
 
-
     <div class="icons">
         <div class="circle">+</div>
         <div class="circle">⤴</div>
@@ -20,8 +19,9 @@
   <div class="templates-btn">
       <a href="{% url 'template_gallery' %}">Templates</a>
   </div>
-  <div class="template-grid">
-    <!-- 🌿 Template Card 1 -->
+  
+  <div class="homepage-template-grid">
+    <!-- Template Card 1 -->
     <div class="template-card">
         <a href="{% url 'preview_template' 'template1' %}" style="text-decoration: none; color: inherit; height: 100%;">
             <img src="{% static 'images/template1.png' %}" alt="Modern Green Layout">
@@ -29,7 +29,7 @@
         </a>
     </div>
 
-    <!-- 🌑 Template Card 2 -->
+    <!-- Template Card 2 -->
     <div class="template-card">
         <a href="{% url 'preview_template' 'template2' %}" style="text-decoration: none; color: inherit; height: 100%;">
             <img src="{% static 'images/template2.png' %}" alt="Classic Slate Layout">
@@ -37,7 +37,7 @@
         </a>
     </div>
 
-    <!-- 🌊 Template Card 3 -->
+    <!-- Template Card 3 -->
     <div class="template-card">
         <a href="{% url 'preview_template' 'template3' %}" style="text-decoration: none; color: inherit; height: 100%;">
             <img src="{% static 'images/template3.png' %}" alt="Creative Teal Layout">
@@ -45,7 +45,7 @@
         </a>
     </div>
 
-    <!-- ✉ Template Card 4 -->
+    <!-- Template Card 4 -->
     <div class="template-card">
         <a href="{% url 'preview_template' 'template4' %}" style="text-decoration: none; color: inherit; height: 100%;">
             <img src="{% static 'images/template4.png' %}" alt="Minimal Elegant Layout">
@@ -53,12 +53,14 @@
         </a>
     </div>
 
-    <!-- 🌑 Template Card 5 -->
+    <!-- Template Card 5 -->
     <div class="template-card">
         <a href="{% url 'preview_template' 'template5' %}" style="text-decoration: none; color: inherit; height: 100%;">
             <img src="{% static 'images/template5.png' %}" alt="Executive Charcoal Layout">
             <span>Charcoal Executive</span>
         </a>
     </div>
-</div>
-  {% endblock %}
+  </div> 
+</div> 
+
+{% endblock %}
