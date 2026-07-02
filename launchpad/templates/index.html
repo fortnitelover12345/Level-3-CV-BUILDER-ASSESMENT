@@ -3,15 +3,24 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-  <div class="hero">
+<div class="hero">
     <div class="main-box">
         Welcome to Launchpad CV Builder! 
        <div class="subheading">Your one-stop solution for creating stunning CVs effortlessly.</div> 
     </div>
 
-    <div class="icons">
-        <div class="circle">+</div>
-        <div class="circle">⤴</div>
+    <div class="action-buttons-row">
+        
+
+        <a href="{% url 'edit_profile' %}" class="action-item-link">
+            <div class="circle-icon-btn">+</div>
+            <span class="action-text-label">Create CV</span>
+        </a>
+
+        <a href="{% url 'upload_cv' %}" class="action-item-link">
+            <div class="circle-icon-btn">⤴</div>
+            <span class="action-text-label">Upload CV</span>
+        </a>
     </div>
 </div>
 

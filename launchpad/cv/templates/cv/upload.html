@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+Upload CV
+{% endblock %}
+
+{% block content %}
+
+<div class="cv-preview-bg upload-page-wrapper">
+    
+    <div class="cv-container t1-container upload-card">
+        
+        <div class="main-box upload-title">
+            Upload Your Existing CV
+        </div>
+        
+        <div class="subheading upload-subtitle">
+            Select your PDF document file below. Launchpad will automatically extract your data fields.
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-box msg-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'upload_cv' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="file-drop-zone">
+                <input type="file" name="cv_file" accept=".pdf" required class="file-input-field">
+            </div>
+            
+            <div class="upload-action-actions">
+                <button type="submit" class="arrow-btn upload-submit-btn">Process & Upload</button>
+                <a href="/" class="login-btn upload-cancel-btn">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
