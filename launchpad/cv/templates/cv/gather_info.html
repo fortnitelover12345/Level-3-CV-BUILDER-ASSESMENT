@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Build Your CV</title>
-    <link rel="stylesheet" href="{% static 'cv/style.css' %}">
+    <link rel="stylesheet" href="{% static 'static/cv/style.css' %}">
 </head>
 <body>
 <div class="form-container">
@@ -117,6 +117,60 @@
         </form>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const summaryField = document.getElementById("id_summary") || document.querySelector('textarea[name="summary"]');
+        const skillsField = document.getElementById("id_skills") || document.querySelector('textarea[name="skills"]');
+    
+        if (!summaryField) return;
+    
+
+        const SKILLS_TO_EXTRACT = [
+            "team worker", "active listener", "customer service", "communication", 
+            "problem solving", "leadership", "time management", "teamwork", 
+            "python", "django", "hardworking", "dedicated"
+        ];
+    
+        let currentSummaryText = summaryField.value;
+        let foundSkills = [];
+    
+  
+        if (skillsField && skillsField.value.trim()) {
+            foundSkills = skillsField.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        }
+    
+
+        SKILLS_TO_EXTRACT.forEach(skill => {
+            const skillRegex = new RegExp('\\b' + skill + '\\b', 'gi');
+            
+            if (skillRegex.test(currentSummaryText)) {
+                let formattedSkill = skill.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                
+                if (!foundSkills.includes(formattedSkill)) {
+                    foundSkills.push(formattedSkill);
+                }
+                
+                currentSummaryText = currentSummaryText.replace(skillRegex, "");
+            }
+        });
+
+        currentSummaryText = currentSummaryText.replace(/,\s*,/g, ",")   
+                                               .replace(/^[\s,.-]+/, "")  
+                                               .replace(/[\s,.-]+$/, "")  
+                                               .replace(/\s+/g, " ")      
+                                               .trim();
+    
+
+        summaryField.value = currentSummaryText;
+        
+        if (skillsField && foundSkills.length > 0) {
+
+            skillsField.value = foundSkills.join(", ");
+        }
+    });
+    </script>
+    
     {% endblock %}
 
 </body>

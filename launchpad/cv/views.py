@@ -123,6 +123,7 @@ def upload_cv_view(request):
     
             lines = [line.strip() for line in extracted_text.split('\n') if line.strip()]
             
+          
             full_name = ""
             phone = ""
             summary = ""
@@ -139,6 +140,7 @@ def upload_cv_view(request):
             if phone_match:
                 phone = phone_match.group(0)
 
+
             current_section = "summary"
             
             SUMMARY_KEYWORDS = ["summary", "profile", "about me", "objective", "overview"]
@@ -146,39 +148,45 @@ def upload_cv_view(request):
             EXPERIENCE_KEYWORDS = ["experience", "work history", "employment", "history", "career"]
             EDUCATION_KEYWORDS = ["education", "school", "qualification", "degree", "academic"]
 
+
+            COMMON_SKILLS_LIST = ["team worker", "active listener", "customer service", "communication", 
+                                  "problem solving", "leadership", "time management", "teamwork", "python", "django"]
+
             for line in lines[1:]:  
                 lower_line = line.lower().strip()
                 
+
                 if "@" in lower_line or ".com" in lower_line or (any(char.isdigit() for char in line) and len([c for c in line if c.isdigit()]) > 7):
                     continue
                 
-          
+  
+                for skill_word in COMMON_SKILLS_LIST:
+                    if skill_word in lower_line and skill_word not in skills.lower():
+                        skills += skill_word.title() + ", "
+
+
                 has_skills_kw = any(kw in lower_line for kw in SKILLS_KEYWORDS)
                 has_summary_kw = any(kw in lower_line for kw in SUMMARY_KEYWORDS)
                 
                 if has_skills_kw and has_summary_kw:
-           
                     skills_pos = min([lower_line.find(kw) for kw in SKILLS_KEYWORDS if lower_line.find(kw) != -1])
                     summary_pos = min([lower_line.find(kw) for kw in SUMMARY_KEYWORDS if lower_line.find(kw) != -1])
                     
-            
                     clean_text = line
                     for phrase in ["core skills", "professional summary", "summary", "skills"]:
                         clean_text = re.sub(phrase, "", clean_text, flags=re.IGNORECASE)
                     clean_text = clean_text.strip()
                     
-                   
                     if clean_text:
                         if skills_pos < summary_pos:
-                           
                             summary += clean_text + " "
                             current_section = "summary"
                         else:
-                            
-                            skills += clean_text + " "
+                            skills += clean_text + ", "
                             current_section = "skills"
                     continue 
-       
+
+ 
                 is_standalone_header = False
                 
                 if any(kw in lower_line for kw in SKILLS_KEYWORDS):
@@ -194,19 +202,23 @@ def upload_cv_view(request):
                     current_section = "education"
                     is_standalone_header = True
 
-                
+
                 if is_standalone_header and len(lower_line.split()) <= 4:
                     continue
 
-                
                 if current_section == "summary":
                     summary += line + " "
                 elif current_section == "skills":
-                    skills += line + " "
+                    skills += line + ", "
                 elif current_section == "experience":
                     experience += line + "\n"
                 elif current_section == "education":
                     education += line + "\n"
+
+
+            if skills:
+                skills = re.sub(r',\s*$', '', skills.strip()) 
+                skills = re.sub(r'\s+', ' ', skills).strip()
 
             
             profile, created = CVProfile.objects.get_or_create(user=request.user)
