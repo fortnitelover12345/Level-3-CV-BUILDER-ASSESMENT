@@ -15,7 +15,6 @@ Next install the following frameworks & libraries:
 > The "--upgrade pip" may not be necessary if already to date.
 ```
 py -m pip install django
-py -m pip install Pillow
 py -m pip install --upgrade pip
 ```
 Once those are installed use the connected command to run:
@@ -24,7 +23,7 @@ Once those are installed use the connected command to run:
 ```
 Set-ExecutionPolicy RemoteSigned -Scope Process ; 
 .venv/Scripts/activate ; 
-cd clarity ; 
+cd launchpad ; 
 py manage.py runserver 6464
 ```
 Now everything should be complete and you can go to the following link: 

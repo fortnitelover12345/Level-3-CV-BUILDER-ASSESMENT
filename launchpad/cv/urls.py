@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
-
+# these are all the different URLS patterns for the CV templates, gather info, preview page, and upload page. 
 urlpatterns = [
     path('templates/', views.template_gallery, name='template_gallery'),
     path('templates/preview/<str:template_name>/', views.preview_template, name='preview_template'),
